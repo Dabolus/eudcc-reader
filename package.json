@@ -30,7 +30,7 @@
     "pako": "^2.0.4",
     "preact": "^10.3.1",
     "preact-render-to-string": "^5.1.4",
-    "wouter": "^2.7.4"
+    "wouter-preact": "^2.7.4"
   },
   "devDependencies": {
     "@types/enzyme": "^3.10.5",
