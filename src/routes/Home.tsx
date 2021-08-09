@@ -11,7 +11,7 @@ const Home: FunctionalComponent = () => {
 
   const startReader = async (): Promise<void> => {
     await startCamera({ facingMode: 'environment' });
-    setLocation('reader');
+    setLocation('/reader');
   };
 
   return (
