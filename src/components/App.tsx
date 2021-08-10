@@ -9,7 +9,7 @@ const App: FunctionalComponent = () => {
     <div>
       <Router base="/green-pass-reader">
         <Route path="/" component={Home} />
-        <Route path="/reader" component={Reader} />
+        <Route path="/read" component={Reader} />
       </Router>
     </div>
   );
