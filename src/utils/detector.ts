@@ -1,7 +1,18 @@
-// TODO: lazy load polyfill to improve browser support
-const detectorPromise = Promise.resolve(
-  new BarcodeDetector({ formats: ['qr_code'] }),
-);
+import type BarcodeDetectorJsqr from 'barcode-detector/dist/BarcodeDetectorJsqr';
+
+export const configureQrCodeDetector = async (): Promise<BarcodeDetector> => {
+  const Detector =
+    'BarcodeDetector' in window &&
+    (await BarcodeDetector.getSupportedFormats()).includes('qr_code')
+      ? // If BarcodeDetector exists and supports QR Codes, use it
+        BarcodeDetector
+      : // Otherwise, lazy load the polyfill and use that instead
+        (await import('barcode-detector')).default;
+
+  return new Detector({ formats: ['qr_code'] });
+};
+
+const detectorPromise: Promise<BarcodeDetectorJsqr> = configureQrCodeDetector();
 
 export const detectQrCode = async (
   video: HTMLVideoElement,
