@@ -26,7 +26,7 @@ const Reader: FunctionalComponent = () => {
       }
 
       const { current: video } = videoRef;
-      const stream = await startCamera();
+      const stream = await startCamera({ facingMode: 'environment' });
       video.srcObject = stream;
 
       read(video);
@@ -59,7 +59,7 @@ const Reader: FunctionalComponent = () => {
         {/* Overlay */}
         <div />
         {/* Actual camera */}
-        <video ref={videoRef} autoPlay />
+        <video ref={videoRef} autoPlay muted playsInline />
       </main>
     </>
   );
