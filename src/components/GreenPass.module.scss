@@ -2,22 +2,5 @@
   width: 100%;
   max-width: 640px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 10rem auto;
-  gap: 2rem;
   padding: 2rem;
-
-  > label {
-    font-size: 1.75rem;
-    font-weight: 700;
-  }
-
-  > span {
-    font-size: 2rem;
-    font-weight: 400;
-  }
-}
-
-.reason {
-  grid-column: 1 / span 2;
 }
