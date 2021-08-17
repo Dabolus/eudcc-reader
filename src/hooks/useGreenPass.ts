@@ -1,11 +1,10 @@
 import { useCallback, useState } from 'preact/hooks';
-import { EUDCC } from '../types/DCC.schema';
 import { detectQrCode } from '../utils/detector';
-import { extractGreenPassData } from '../utils/extractor';
+import { extractGreenPassData, GreenPassDataOutput } from '../utils/extractor';
 
 export interface UseGreenPassValue {
-  read(video: HTMLVideoElement): Promise<EUDCC>;
-  data: EUDCC | undefined;
+  read(video: HTMLVideoElement): Promise<GreenPassDataOutput>;
+  output: GreenPassDataOutput | undefined;
 }
 
 const waitForVideoMetadataLoaded = (
@@ -20,19 +19,21 @@ const waitForVideoMetadataLoaded = (
   });
 
 const useGreenPass = (): UseGreenPassValue => {
-  const [data, setData] = useState<EUDCC | undefined>(undefined);
+  const [output, setOutput] = useState<GreenPassDataOutput | undefined>(
+    undefined,
+  );
 
   const read = useCallback<UseGreenPassValue['read']>(async video => {
     await waitForVideoMetadataLoaded(video);
     const qrContent = await detectQrCode(video);
-    const greenPassData = await extractGreenPassData(qrContent);
+    const greenPassDataOutput = await extractGreenPassData(qrContent);
 
-    setData(greenPassData);
+    setOutput(greenPassDataOutput);
 
-    return greenPassData;
+    return greenPassDataOutput;
   }, []);
 
-  return { read, data };
+  return { read, output };
 };
 
 export default useGreenPass;

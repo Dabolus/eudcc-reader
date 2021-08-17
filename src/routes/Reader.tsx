@@ -11,13 +11,13 @@ import commonClasses from '../common/styles.module.scss';
 const Reader: FunctionalComponent = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const { hasGivenConsent, startCamera, stopCamera } = useCamera();
-  const { read, data } = useGreenPass();
+  const { read, output } = useGreenPass();
 
   useEffect(() => {
-    if (data) {
+    if (output) {
       stopCamera();
     }
-  }, [data, stopCamera]);
+  }, [output, stopCamera]);
 
   useEffect(() => {
     const detectQr = async (): Promise<void> => {
@@ -43,8 +43,8 @@ const Reader: FunctionalComponent = () => {
     return <>Loading...</>;
   }
 
-  return data ? (
-    <GreenPass value={data} />
+  return output ? (
+    <GreenPass value={output} />
   ) : (
     <>
       <header className={commonClasses.header}>

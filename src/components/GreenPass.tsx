@@ -1,12 +1,13 @@
 import { FunctionalComponent, h } from 'preact';
 import { useState } from 'preact/hooks';
-import { EUDCC } from '../types/DCC.schema';
 import GreenPassResultsTab from '../routes/GreenPassResultsTab';
+import GreenPassRawTab from '../routes/GreenPassRawTab';
+import { GreenPassDataOutput } from '../utils/extractor';
 import classes from './GreenPass.module.scss';
 import Tabs from './Tabs';
 
 export interface GreenPassProps {
-  value: EUDCC;
+  value: GreenPassDataOutput;
 }
 
 const GreenPass: FunctionalComponent<GreenPassProps> = ({ value }) => {
