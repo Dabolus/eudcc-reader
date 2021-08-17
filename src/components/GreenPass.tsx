@@ -22,6 +22,11 @@ const GreenPass: FunctionalComponent<GreenPassProps> = ({ value }) => {
             title: 'Results',
             content: <GreenPassResultsTab value={value} />,
           },
+          {
+            id: 'raw',
+            title: 'Raw',
+            content: <GreenPassRawTab value={value} />,
+          },
         ]}
         value={currentTab}
         onChange={setCurrentTab}
