@@ -1,6 +1,7 @@
 import { FunctionalComponent, h } from 'preact';
 import { ValidEUDCC } from '../types/DCC.schema';
 import { eudccStatusToMessageMap } from '../utils/extractor';
+import { formatDate } from '../utils/helpers';
 import classes from './GreenPassResultsTab.module.scss';
 
 export interface GreenPassResultsTabProps {
@@ -17,7 +18,7 @@ const GreenPassResultsTab: FunctionalComponent<GreenPassResultsTabProps> = ({
     </span>
     <label id="birth-date-label">Birth date</label>
     <span aria-labelledby="birth-date-label">
-      {value.data.birthDate?.toLocaleDateString()}
+      {formatDate(value.data.birthDate) ?? '-'}
     </span>
     <strong className={classes.reason}>
       {eudccStatusToMessageMap[value.status]}
