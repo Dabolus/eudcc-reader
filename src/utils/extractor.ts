@@ -261,3 +261,11 @@ export const isValidEUDCC = (eudcc: EUDCC): eudcc is ValidEUDCC =>
     EUDCCStatus.VALID,
     EUDCCStatus.PARTIALLY_VALID,
   ].includes(eudcc.status);
+
+export const eudccStatusToMessageMap: Record<EUDCCStatus, string> = {
+  [EUDCCStatus.NOT_VALID]: 'Invalid certificate',
+  [EUDCCStatus.NOT_VALID_YET]: 'Certificate not valid yet',
+  [EUDCCStatus.VALID]: 'Certificate valid in Europe',
+  [EUDCCStatus.PARTIALLY_VALID]: 'Certificate valid in Italy',
+  [EUDCCStatus.NOT_EUDCC]: 'The QR code is not an EUDCC',
+};
