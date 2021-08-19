@@ -42,3 +42,14 @@ export const stringify = (
     )
     .join('\n')}\n${pad}}`;
 };
+
+export const formatDate = (date: Date | undefined): string | undefined => {
+  if (!date) {
+    return;
+  }
+
+  return date.toISOString().endsWith('T00:00:00.000Z')
+    ? // The object only contains a date without the time
+      date.toLocaleDateString()
+    : date.toLocaleString();
+};

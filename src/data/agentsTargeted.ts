@@ -1,3 +1,7 @@
+export enum AgentTargeted {
+  COVID_19 = 840539006,
+}
+
 export default {
-  840539006: 'COVID-19',
+  [AgentTargeted.COVID_19]: 'COVID-19',
 };

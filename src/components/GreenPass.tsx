@@ -1,6 +1,7 @@
 import { FunctionalComponent, h } from 'preact';
 import { useState } from 'preact/hooks';
 import GreenPassResultsTab from '../routes/GreenPassResultsTab';
+import GreenPassAdvancedTab from '../routes/GreenPassAdvancedTab';
 import GreenPassRawTab from '../routes/GreenPassRawTab';
 import {
   eudccStatusToMessageMap,
@@ -27,6 +28,11 @@ const GreenPass: FunctionalComponent<GreenPassProps> = ({ value }) => {
               id: 'results',
               title: 'Results',
               content: <GreenPassResultsTab value={value.parsed} />,
+            },
+            {
+              id: 'advanced',
+              title: 'Advanced',
+              content: <GreenPassAdvancedTab value={value.parsed} />,
             },
             {
               id: 'raw',
