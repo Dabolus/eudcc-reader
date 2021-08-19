@@ -26,7 +26,7 @@ const GreenPass: FunctionalComponent<GreenPassProps> = ({ value }) => {
             {
               id: 'results',
               title: 'Results',
-              content: <GreenPassResultsTab value={value} />,
+              content: <GreenPassResultsTab value={value.parsed} />,
             },
             {
               id: 'raw',

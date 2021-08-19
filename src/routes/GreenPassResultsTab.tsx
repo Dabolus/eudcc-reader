@@ -1,33 +1,26 @@
-import { FunctionalComponent, h, Fragment } from 'preact';
-import {
-  eudccStatusToMessageMap,
-  GreenPassDataOutput,
-  isValidEUDCC,
-} from '../utils/extractor';
+import { FunctionalComponent, h } from 'preact';
+import { ValidEUDCC } from '../types/DCC.schema';
+import { eudccStatusToMessageMap } from '../utils/extractor';
 import classes from './GreenPassResultsTab.module.scss';
 
 export interface GreenPassResultsTabProps {
-  value: GreenPassDataOutput;
+  value: ValidEUDCC;
 }
 
 const GreenPassResultsTab: FunctionalComponent<GreenPassResultsTabProps> = ({
-  value: { parsed },
+  value,
 }) => (
   <div className={classes.grid}>
-    {isValidEUDCC(parsed) && (
-      <>
-        <label id="name-label">Name</label>
-        <span aria-labelledby="name-label">
-          {parsed.data.name?.surname} {parsed.data.name?.forename}
-        </span>
-        <label id="birth-date-label">Birth date</label>
-        <span aria-labelledby="birth-date-label">
-          {parsed.data.birthDate?.toLocaleDateString()}
-        </span>
-      </>
-    )}
+    <label id="name-label">Name</label>
+    <span aria-labelledby="name-label">
+      {value.data.name?.surname} {value.data.name?.forename}
+    </span>
+    <label id="birth-date-label">Birth date</label>
+    <span aria-labelledby="birth-date-label">
+      {value.data.birthDate?.toLocaleDateString()}
+    </span>
     <strong className={classes.reason}>
-      {eudccStatusToMessageMap[parsed.status]}
+      {eudccStatusToMessageMap[value.status]}
     </strong>
   </div>
 );
