@@ -51,7 +51,9 @@ export const extractGreenPassData = async (
     ];
     const rawEUDCC: RawEUDCC = {
       data: (content.get(-260) as Map<number, RawEUDCCData>).get(1)!,
-      country: content.get(1) as string,
+      country: content.get(
+        1,
+      ) as keyof typeof import('../data/countryCodes').default,
       createdAt: content.get(6) as number,
       expiresAt: content.get(4) as number,
     };
