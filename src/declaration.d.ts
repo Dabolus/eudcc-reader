@@ -17,3 +17,7 @@ interface Window {
 declare module 'barcode-detector' {
   export = BarcodeDetector;
 }
+
+declare module 'qr.js' {
+  export default function qr(text: string): { modules: boolean[][] };
+}

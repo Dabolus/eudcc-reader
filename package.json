@@ -31,6 +31,7 @@
     "pako": "^2.0.4",
     "preact": "^10.3.1",
     "preact-render-to-string": "^5.1.4",
+    "qr.js": "^0.0.0",
     "wouter-preact": "^2.7.4"
   },
   "devDependencies": {

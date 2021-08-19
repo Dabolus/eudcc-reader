@@ -14,4 +14,10 @@
     margin: 0;
     overflow: auto;
   }
+
+  > p {
+    font-size: 0.8rem;
+    margin: 0 0 1rem;
+    font-style: italic;
+  }
 }
