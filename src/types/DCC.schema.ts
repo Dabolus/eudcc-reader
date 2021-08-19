@@ -303,13 +303,10 @@ export interface EUDCCData {
   }[];
 }
 
-export interface EUDCCMetadata {
+export interface RawEUDCC {
   createdAt: number;
   expiresAt: number;
-  country: string;
-}
-
-export interface RawEUDCC extends EUDCCMetadata {
+  country: keyof typeof import('../data/countryCodes').default;
   data: RawEUDCCData;
 }
 
@@ -325,7 +322,10 @@ export interface InvalidEUDCC {
   status: EUDCCStatus.NOT_EUDCC | EUDCCStatus.NOT_VALID;
 }
 
-export interface ValidEUDCC extends EUDCCMetadata {
+export interface ValidEUDCC {
+  createdAt: Date;
+  expiresAt: Date;
+  country: keyof typeof import('../data/countryCodes').default;
   data: EUDCCData;
   status:
     | EUDCCStatus.NOT_VALID_YET

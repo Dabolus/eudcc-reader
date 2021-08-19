@@ -75,9 +75,16 @@ export const extractGreenPassData = async (
   }
 };
 
-const parseEUDCC = ({ data, ...rest }: RawEUDCC): EUDCC => {
+const parseEUDCC = ({
+  data,
+  createdAt,
+  expiresAt,
+  ...rest
+}: RawEUDCC): EUDCC => {
   const partialEUDCC: Omit<ValidEUDCC, 'status'> = {
     ...rest,
+    createdAt: new Date(createdAt * 1000),
+    expiresAt: new Date(expiresAt * 1000),
     data: {
       version: data.ver,
       name: data.nam
