@@ -1,4 +1,9 @@
+export enum TestResult {
+  NOT_DETECTED = 260415000,
+  DETECTED = 260373001,
+}
+
 export default {
-  260415000: 'Not detected',
-  260373001: 'Detected',
+  [TestResult.NOT_DETECTED]: 'Not detected',
+  [TestResult.DETECTED]: 'Detected',
 };
