@@ -189,7 +189,7 @@ const computeEUDCCStatusFromVaccination = (
     }
 
     if (now > endDate) {
-      return EUDCCStatus.NOT_VALID;
+      return EUDCCStatus.EXPIRED;
     }
 
     return EUDCCStatus.PARTIALLY_VALID;
@@ -211,7 +211,7 @@ const computeEUDCCStatusFromVaccination = (
     }
 
     if (now > endDate) {
-      return EUDCCStatus.NOT_VALID;
+      return EUDCCStatus.EXPIRED;
     }
 
     return EUDCCStatus.VALID;
@@ -242,7 +242,7 @@ const computeEUDCCStatusFromTest = (
   }
 
   if (now > endDate) {
-    return EUDCCStatus.NOT_VALID;
+    return EUDCCStatus.EXPIRED;
   }
 
   return EUDCCStatus.VALID;
@@ -258,7 +258,7 @@ const computeEUDCCStatusFromRecovery = (
   }
 
   if (now > recovery.validUntilDate) {
-    return EUDCCStatus.NOT_VALID;
+    return EUDCCStatus.EXPIRED;
   }
 
   return EUDCCStatus.VALID;
@@ -267,6 +267,7 @@ const computeEUDCCStatusFromRecovery = (
 export const isValidEUDCC = (eudcc: EUDCC): eudcc is ValidEUDCC =>
   [
     EUDCCStatus.NOT_VALID_YET,
+    EUDCCStatus.EXPIRED,
     EUDCCStatus.VALID,
     EUDCCStatus.PARTIALLY_VALID,
   ].includes(eudcc.status);
@@ -274,6 +275,7 @@ export const isValidEUDCC = (eudcc: EUDCC): eudcc is ValidEUDCC =>
 export const eudccStatusToMessageMap: Record<EUDCCStatus, string> = {
   [EUDCCStatus.NOT_VALID]: 'Invalid certificate',
   [EUDCCStatus.NOT_VALID_YET]: 'Certificate not valid yet',
+  [EUDCCStatus.EXPIRED]: 'Certificate is expired',
   [EUDCCStatus.VALID]: 'Certificate valid in Europe',
   [EUDCCStatus.PARTIALLY_VALID]: 'Certificate valid in Italy',
   [EUDCCStatus.NOT_EUDCC]: 'The QR code is not an EUDCC',

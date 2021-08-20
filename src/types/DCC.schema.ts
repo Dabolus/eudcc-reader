@@ -313,6 +313,7 @@ export interface RawEUDCC {
 export enum EUDCCStatus {
   NOT_VALID,
   NOT_VALID_YET,
+  EXPIRED,
   VALID,
   PARTIALLY_VALID,
   NOT_EUDCC,
@@ -329,6 +330,7 @@ export interface ValidEUDCC {
   data: EUDCCData;
   status:
     | EUDCCStatus.NOT_VALID_YET
+    | EUDCCStatus.EXPIRED
     | EUDCCStatus.VALID
     | EUDCCStatus.PARTIALLY_VALID;
 }
