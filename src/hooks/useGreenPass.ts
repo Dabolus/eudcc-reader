@@ -7,15 +7,24 @@ export interface UseGreenPassValue {
   output: GreenPassDataOutput | undefined;
 }
 
-const waitForVideoMetadataLoaded = (
+const waitForVideoStarted = (
   video: HTMLVideoElement,
+  timeout = 5000,
 ): Promise<HTMLVideoElement> =>
-  new Promise(resolve => {
-    if (video.readyState === video.HAVE_METADATA) {
-      return resolve(video);
-    }
+  new Promise((resolve, reject) => {
+    const timeoutId = setTimeout(() => {
+      reject(new Error('Timeout'));
+    }, timeout);
 
-    video.addEventListener('loadedmetadata', () => resolve(video));
+    const callback = (): void => {
+      if (video.currentTime > 0) {
+        clearTimeout(timeoutId);
+        requestAnimationFrame(() => resolve(video));
+      } else {
+        requestAnimationFrame(callback);
+      }
+    };
+    requestAnimationFrame(callback);
   });
 
 const useGreenPass = (): UseGreenPassValue => {
@@ -24,7 +33,7 @@ const useGreenPass = (): UseGreenPassValue => {
   );
 
   const read = useCallback<UseGreenPassValue['read']>(async video => {
-    await waitForVideoMetadataLoaded(video);
+    await waitForVideoStarted(video);
     const qrContent = await detectQrCode(video);
     const greenPassDataOutput = await extractGreenPassData(qrContent);
 
