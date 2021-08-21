@@ -7,6 +7,7 @@ import useCamera from '../hooks/useCamera';
 import useEUDCC from '../hooks/useEUDCC';
 import classes from './Reader.module.scss';
 import commonClasses from '../common/styles.module.scss';
+import Spinner from '../components/Spinner';
 
 const Reader: FunctionalComponent = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -29,7 +30,7 @@ const Reader: FunctionalComponent = () => {
       const stream = await startCamera({ facingMode: 'environment' });
       video.srcObject = stream;
 
-      read(video);
+      await read(video);
     };
 
     detectQr();
@@ -39,13 +40,28 @@ const Reader: FunctionalComponent = () => {
     return <Redirect to="/" />;
   }
 
-  if (!hasGivenConsent) {
-    return <>Loading...</>;
-  }
+  const getPageContent = (): JSX.Element => {
+    if (!hasGivenConsent) {
+      return (
+        <div className={classes.center}>
+          <Spinner />
+        </div>
+      );
+    }
 
-  return output ? (
-    <EUDCC value={output} />
-  ) : (
+    return output ? (
+      <EUDCC value={output} />
+    ) : (
+      <main className={classes.camera}>
+        {/* Overlay */}
+        <div />
+        {/* Actual camera */}
+        <video ref={videoRef} autoPlay muted playsInline />
+      </main>
+    );
+  };
+
+  return (
     <>
       <header className={commonClasses.header}>
         <Link href="/">
@@ -55,12 +71,8 @@ const Reader: FunctionalComponent = () => {
         </Link>
         <h1>Back to home page</h1>
       </header>
-      <main className={classes.camera}>
-        {/* Overlay */}
-        <div />
-        {/* Actual camera */}
-        <video ref={videoRef} autoPlay muted playsInline />
-      </main>
+
+      {getPageContent()}
     </>
   );
 };
