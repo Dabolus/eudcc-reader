@@ -17,12 +17,12 @@ const Home: FunctionalComponent = () => {
   return (
     <>
       <header className={commonClasses.header}>
-        <h1>Green Pass Reader</h1>
+        <h1>EUDCC Reader</h1>
       </header>
       <main className={classes.content}>
         <section className={`${commonClasses.card} ${classes.spaced}`}>
           <h2>
-            Read a <strong>Green Pass</strong>
+            Read an <strong>EUDCC</strong>
           </h2>
           <button onClick={startReader} className={classes.startReaderButton}>
             <QRCodeIcon />

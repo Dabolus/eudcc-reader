@@ -16,7 +16,7 @@ import {
 } from '../data/validationRules';
 import { TestResult } from '../data/testResults';
 
-export interface GreenPassDataOutput {
+export interface EUDCCDataOutput {
   raw: string;
   base45?: string;
   compressed?: Uint8Array;
@@ -26,9 +26,9 @@ export interface GreenPassDataOutput {
   parsed: EUDCC;
 }
 
-export const extractGreenPassData = async (
+export const extractEUDCCData = async (
   raw: string,
-): Promise<GreenPassDataOutput> => {
+): Promise<EUDCCDataOutput> => {
   try {
     // Strip the HCERT protocol prefix
     const base45 = raw.slice(4);

@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "green-pass-reader",
-  "version": "0.0.0",
+  "name": "eudcc-reader",
+  "version": "0.1.0",
   "license": "MIT",
   "scripts": {
     "build": "preact build --preload --no-prerender",

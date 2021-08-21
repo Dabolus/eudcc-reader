@@ -7,7 +7,7 @@ import Reader from '../routes/Reader';
 const App: FunctionalComponent = () => {
   return (
     <div>
-      <Router base="/green-pass-reader">
+      <Router base="/eudcc-reader">
         <Route path="/" component={Home} />
         <Route path="/read" component={Reader} />
       </Router>

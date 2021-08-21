@@ -1,15 +1,15 @@
 import { FunctionalComponent, h } from 'preact';
 import { useMemo } from 'preact/hooks';
 import qr from 'qr.js';
-import { GreenPassDataOutput } from '../utils/extractor';
+import { EUDCCDataOutput } from '../utils/extractor';
 import { stringify } from '../utils/helpers';
-import classes from './GreenPassRawTab.module.scss';
+import classes from './EUDCCRawTab.module.scss';
 
-export interface GreenPassRawTabProps {
-  value: GreenPassDataOutput;
+export interface EUDCCRawTabProps {
+  value: EUDCCDataOutput;
 }
 
-const GreenPassRawTab: FunctionalComponent<GreenPassRawTabProps> = ({
+const EUDCCRawTab: FunctionalComponent<EUDCCRawTabProps> = ({
   value: { raw, base45, compressed, cose, cbor, content },
 }) => {
   const qrCode = useMemo(() => {
@@ -62,4 +62,4 @@ const GreenPassRawTab: FunctionalComponent<GreenPassRawTabProps> = ({
   );
 };
 
-export default GreenPassRawTab;
+export default EUDCCRawTab;

@@ -11,9 +11,9 @@ import testResults from '../data/testResults';
 import { ValidEUDCC } from '../types/DCC.schema';
 import { eudccStatusToMessageMap } from '../utils/extractor';
 import { formatDate } from '../utils/helpers';
-import classes from './GreenPassAdvancedTab.module.scss';
+import classes from './EUDCCAdvancedTab.module.scss';
 
-export interface GreenPassAdvancedTabProps {
+export interface EUDCCAdvancedTabProps {
   value: ValidEUDCC;
 }
 
@@ -106,7 +106,7 @@ const sections: Record<string, Section> = {
 };
 /* eslint-enable @typescript-eslint/explicit-function-return-type */
 
-const GreenPassAdvancedTab: FunctionalComponent<GreenPassAdvancedTabProps> = ({
+const EUDCCAdvancedTab: FunctionalComponent<EUDCCAdvancedTabProps> = ({
   value,
 }) => {
   const sectionsMarkup = useMemo(
@@ -134,4 +134,4 @@ const GreenPassAdvancedTab: FunctionalComponent<GreenPassAdvancedTabProps> = ({
 
   return <div className={classes.list}>{sectionsMarkup}</div>;
 };
-export default GreenPassAdvancedTab;
+export default EUDCCAdvancedTab;

@@ -1,17 +1,17 @@
 import { FunctionalComponent, h, Fragment } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
 import { Link, Redirect } from 'wouter-preact';
-import GreenPass from '../components/GreenPass';
+import EUDCC from '../components/EUDCC';
 import ArrowBackIcon from '../components/icons/ArrowBack';
 import useCamera from '../hooks/useCamera';
-import useGreenPass from '../hooks/useGreenPass';
+import useEUDCC from '../hooks/useEUDCC';
 import classes from './Reader.module.scss';
 import commonClasses from '../common/styles.module.scss';
 
 const Reader: FunctionalComponent = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const { hasGivenConsent, startCamera, stopCamera } = useCamera();
-  const { read, output } = useGreenPass();
+  const { read, output } = useEUDCC();
 
   useEffect(() => {
     if (output) {
@@ -44,7 +44,7 @@ const Reader: FunctionalComponent = () => {
   }
 
   return output ? (
-    <GreenPass value={output} />
+    <EUDCC value={output} />
   ) : (
     <>
       <header className={commonClasses.header}>

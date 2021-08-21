@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'preact/hooks';
 import { detectQrCode } from '../utils/detector';
-import { extractGreenPassData, GreenPassDataOutput } from '../utils/extractor';
+import { extractEUDCCData, EUDCCDataOutput } from '../utils/extractor';
 
-export interface UseGreenPassValue {
-  read(video: HTMLVideoElement): Promise<GreenPassDataOutput>;
-  output: GreenPassDataOutput | undefined;
+export interface UseEUDCCValue {
+  read(video: HTMLVideoElement): Promise<EUDCCDataOutput>;
+  output: EUDCCDataOutput | undefined;
 }
 
 const waitForVideoStarted = (
@@ -27,22 +27,20 @@ const waitForVideoStarted = (
     requestAnimationFrame(callback);
   });
 
-const useGreenPass = (): UseGreenPassValue => {
-  const [output, setOutput] = useState<GreenPassDataOutput | undefined>(
-    undefined,
-  );
+const useEUDCC = (): UseEUDCCValue => {
+  const [output, setOutput] = useState<EUDCCDataOutput | undefined>(undefined);
 
-  const read = useCallback<UseGreenPassValue['read']>(async video => {
+  const read = useCallback<UseEUDCCValue['read']>(async video => {
     await waitForVideoStarted(video);
     const qrContent = await detectQrCode(video);
-    const greenPassDataOutput = await extractGreenPassData(qrContent);
+    const eudccDataOutput = await extractEUDCCData(qrContent);
 
-    setOutput(greenPassDataOutput);
+    setOutput(eudccDataOutput);
 
-    return greenPassDataOutput;
+    return eudccDataOutput;
   }, []);
 
   return { read, output };
 };
 
-export default useGreenPass;
+export default useEUDCC;

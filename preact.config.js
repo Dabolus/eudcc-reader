@@ -1,4 +1,4 @@
-const publicPath = '/green-pass-reader/';
+const publicPath = '/eudcc-reader/';
 
 export default {
   webpack(config, env, helpers, options) {

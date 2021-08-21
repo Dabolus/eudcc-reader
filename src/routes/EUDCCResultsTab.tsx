@@ -2,13 +2,13 @@ import { FunctionalComponent, h } from 'preact';
 import { ValidEUDCC } from '../types/DCC.schema';
 import { eudccStatusToMessageMap } from '../utils/extractor';
 import { formatDate } from '../utils/helpers';
-import classes from './GreenPassResultsTab.module.scss';
+import classes from './EUDCCResultsTab.module.scss';
 
-export interface GreenPassResultsTabProps {
+export interface EUDCCResultsTabProps {
   value: ValidEUDCC;
 }
 
-const GreenPassResultsTab: FunctionalComponent<GreenPassResultsTabProps> = ({
+const EUDCCResultsTab: FunctionalComponent<EUDCCResultsTabProps> = ({
   value,
 }) => (
   <div className={classes.grid}>
@@ -26,4 +26,4 @@ const GreenPassResultsTab: FunctionalComponent<GreenPassResultsTabProps> = ({
   </div>
 );
 
-export default GreenPassResultsTab;
+export default EUDCCResultsTab;

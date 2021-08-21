@@ -1,22 +1,22 @@
 import { FunctionalComponent, h } from 'preact';
 import { useState } from 'preact/hooks';
-import GreenPassResultsTab from '../routes/GreenPassResultsTab';
-import GreenPassAdvancedTab from '../routes/GreenPassAdvancedTab';
-import GreenPassRawTab from '../routes/GreenPassRawTab';
+import EUDCCResultsTab from '../routes/EUDCCResultsTab';
+import EUDCCAdvancedTab from '../routes/EUDCCAdvancedTab';
+import EUDCCRawTab from '../routes/EUDCCRawTab';
 import {
   eudccStatusToMessageMap,
-  GreenPassDataOutput,
+  EUDCCDataOutput,
   isValidEUDCC,
 } from '../utils/extractor';
-import classes from './GreenPass.module.scss';
+import classes from './EUDCC.module.scss';
 import commonClasses from '../common/styles.module.scss';
 import Tabs from './Tabs';
 
-export interface GreenPassProps {
-  value: GreenPassDataOutput;
+export interface EUDCCProps {
+  value: EUDCCDataOutput;
 }
 
-const GreenPass: FunctionalComponent<GreenPassProps> = ({ value }) => {
+const EUDCC: FunctionalComponent<EUDCCProps> = ({ value }) => {
   const [currentTab, setCurrentTab] = useState('results');
 
   return (
@@ -27,17 +27,17 @@ const GreenPass: FunctionalComponent<GreenPassProps> = ({ value }) => {
             {
               id: 'results',
               title: 'Results',
-              content: <GreenPassResultsTab value={value.parsed} />,
+              content: <EUDCCResultsTab value={value.parsed} />,
             },
             {
               id: 'advanced',
               title: 'Advanced',
-              content: <GreenPassAdvancedTab value={value.parsed} />,
+              content: <EUDCCAdvancedTab value={value.parsed} />,
             },
             {
               id: 'raw',
               title: 'Raw',
-              content: <GreenPassRawTab value={value} />,
+              content: <EUDCCRawTab value={value} />,
             },
           ]}
           value={currentTab}
@@ -52,4 +52,4 @@ const GreenPass: FunctionalComponent<GreenPassProps> = ({ value }) => {
   );
 };
 
-export default GreenPass;
+export default EUDCC;

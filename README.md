@@ -1,4 +1,4 @@
-# green-pass-reader
+# eudcc-reader
 
 ## CLI Commands
 

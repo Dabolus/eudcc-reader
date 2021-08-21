@@ -1,6 +1,6 @@
 {
-  "name": "Green Pass Reader",
-  "short_name": "Green Pass Reader",
+  "name": "EUDCC Reader",
+  "short_name": "EUDCC Reader",
   "start_url": ".",
   "display": "standalone",
   "orientation": "portrait",
