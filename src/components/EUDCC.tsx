@@ -48,6 +48,13 @@ const EUDCC: FunctionalComponent<EUDCCProps> = ({ value }) => {
           <strong>{eudccStatusToMessageMap[value.parsed.status]}</strong>
         </div>
       )}
+      <span role="alert" className={classes.warning}>
+        Note that this app doesn't currently verify the validity of the EUDCC
+        you read, but it just reads its contents.{' '}
+        <strong>
+          Don't trust this app if you need to check the validity of an EUDCC!
+        </strong>
+      </span>
     </main>
   );
 };
