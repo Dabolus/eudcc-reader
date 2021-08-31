@@ -20,7 +20,7 @@ const Home: FunctionalComponent = () => {
         <h1>EUDCC Reader</h1>
       </header>
       <main className={classes.content}>
-        <section className={`${commonClasses.card} ${classes.spaced}`}>
+        <section className={commonClasses.card}>
           <h2>
             Read an <strong>EUDCC</strong>
           </h2>

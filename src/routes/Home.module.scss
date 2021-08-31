@@ -1,7 +1,12 @@
 .content {
+  @media (min-width: 640px) {
+    padding: 2rem;
+  }
+
   > section {
     width: 100%;
     max-width: 480px;
+    margin: 0 auto;
 
     h2 {
       margin-top: 0;
@@ -32,8 +37,4 @@
   &:focus {
     background: var(--gpr-primary-light);
   }
-}
-
-.spaced {
-  margin: 2rem auto;
 }
